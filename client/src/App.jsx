@@ -1,11 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
   const [mode, setMode] = useState('login')
   const [showPassword, setShowPassword] = useState(false)
+  const [theme, setTheme] = useState('light')
   const [message, setMessage] = useState('')
   const isSignup = mode === 'signup'
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
 
   function changeMode(nextMode) {
     setMode(nextMode)
@@ -20,7 +25,7 @@ function App() {
   }
 
   return (
-    <main className="auth-layout">
+    <main className="auth-layout" data-theme={theme}>
       <section className="welcome-panel" aria-label="Welcome">
         <a className="brand" href="/" aria-label="Forma home">
           <span className="brand-mark" aria-hidden="true">
@@ -61,6 +66,16 @@ function App() {
       </section>
 
       <section className="form-panel" aria-label={isSignup ? 'Sign up' : 'Log in'}>
+        <button
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          aria-pressed={theme === 'dark'}
+          className="theme-toggle"
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          type="button"
+        >
+          <span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span>
+          {theme === 'light' ? 'Dark mode' : 'Light mode'}
+        </button>
         <div className="form-wrap">
           <div className="mobile-brand" aria-hidden="true">
             <span className="brand-mark">
