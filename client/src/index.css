@@ -4,12 +4,19 @@
   font-family: 'DM Sans', sans-serif;
   color: #172a25;
   background: #f7f8f5;
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
+}
+
+:root[data-theme='dark'] {
+  color: #e7eee8;
+  background: #101a16;
+  color-scheme: dark;
 }
 
 * {
